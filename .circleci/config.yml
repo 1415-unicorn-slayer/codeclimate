@@ -18,6 +18,10 @@ jobs:
           command: |
             curl -L -o "cc-test-reporter" "https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64"
             sudo chmod +x ./cc-test-reporter
+      - run:
+          name: Install and symlink podman
+          command: |
+            sudo apt install -y podman && ln -s /usr/bin/podman ~/bin/docker && podman version && docker version
       - run: make image
       - run: make citest
 
